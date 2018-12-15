@@ -6,8 +6,8 @@ var app = angular.module('myApp',
         'firstModule'
     ]);
 
-app.constant('BaseURL', "http://localhost:8080");
-app.constant('SocketURL', "localhost:8080");
+app.constant('BaseURL', "http://www.thirdleave.com:8080");
+app.constant('SocketURL', "www.thirdleave.com:8080");
 app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('login');
     $stateProvider
