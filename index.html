@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="src/css/bootstrap.css">
+</head>
+<body>
+<div>
+    <div ui-view>
+        <p>ui-view没有被替换掉,你就能看到我了</p>
+    </div>
+</div>
+<script src="bower_comments/angular.js"></script>
+<script src="https://cdn.bootcss.com/angular-ui-router/1.0.20/angular-ui-router.js"></script>
+<script src="https://cdn.bootcss.com/angular-websocket/2.0.1/angular-websocket.js"></script>
+<script src="app.js"></script>
+<script src="src/scripts/service/commonService.js"></script>
+<script src="src/scripts/controller/common/mainController.js"></script>
+<script src="src/scripts/controller/first/firstController.js"></script>
+<script src="src/scripts/controller/second/secondController.js"></script>
+</body>
