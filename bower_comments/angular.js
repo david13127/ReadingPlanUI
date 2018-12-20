@@ -19830,7 +19830,7 @@ function $$SanitizeUriProvider() {
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
    * urls during img[src] sanitization.
    *
-   * The sanitization is a security measure aimed at prevent XSS attacks via HTML image src links.
+   * The sanitization is a security measure aimed at prevent XSS attacks via HTML images src links.
    *
    * Any URL due to be assigned to an `img[src]` attribute via interpolation is marked as requiring
    * the $sce.MEDIA_URL security context. When interpolation occurs a call is made to
@@ -19890,7 +19890,7 @@ var SCE_CONTEXTS = {
   CSS: 'css',
 
   // An URL used in a context where it refers to the source of media, which are not expected to be run
-  // as scripts, such as an image, audio, video, etc.
+  // as scripts, such as an images, audio, video, etc.
   MEDIA_URL: 'mediaUrl',
 
   // An URL used in a context where it does not refer to a resource that loads code.

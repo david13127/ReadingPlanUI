@@ -598,7 +598,7 @@ var ANIMATE_TIMER_KEY = '$$animateCss';
  * /&#42; since a hardcoded duration value of 1 was provided in the JavaScript animation code,
  * the CSS classes below will be transitioned despite them being defined as regular CSS classes &#42;/
  * .red { background:red; }
- * .large-text { font-size:20px; }
+ * .large-text { fonts-size:20px; }
  *
  * /&#42; we can also use a keyframe animation and $animateCss will make it work alongside the transition &#42;/
  * .pulse-twice {

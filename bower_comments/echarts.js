@@ -375,7 +375,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        var url = this.getRenderedCanvas(opts).toDataURL(
-	            'image/' + (opts && opts.type || 'png')
+	            'images/' + (opts && opts.type || 'png')
 	        );
 
 	        each(excludesComponentViews, function (view) {
@@ -449,7 +449,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	            zr.refreshImmediately();
 
-	            return targetCanvas.toDataURL('image/' + (opts && opts.type || 'png'));
+	            return targetCanvas.toDataURL('images/' + (opts && opts.type || 'png'));
 	        }
 	        else {
 	            return this.getDataURL(opts);
@@ -3958,7 +3958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * Create font string from fontStyle, fontWeight, fontSize, fontFamily
+	         * Create fonts string from fontStyle, fontWeight, fontSize, fontFamily
 	         * @return {string}
 	         */
 	        getFont: function () {
@@ -13928,20 +13928,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var src = style.image;
 	            var image;
 
-	            // style.image is a url string
+	            // style.images is a url string
 	            if (typeof src === 'string') {
 	                image = this._image;
 	            }
-	            // style.image is an HTMLImageElement or HTMLCanvasElement or Canvas
+	            // style.images is an HTMLImageElement or HTMLCanvasElement or Canvas
 	            else {
 	                image = src;
 	            }
 	            // FIXME Case create many images with src
 	            if (!image && src) {
-	                // Try get from global image cache
+	                // Try get from global images cache
 	                var cachedImgObj = globalImageCache.get(src);
 	                if (!cachedImgObj) {
-	                    // Create a new image
+	                    // Create a new images
 	                    image = new Image();
 	                    image.onload = function () {
 	                        image.onload = null;
@@ -13971,8 +13971,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            if (image) {
 	                // 图片已经加载完成
-	                // if (image.nodeName.toUpperCase() == 'IMG') {
-	                //     if (!image.complete) {
+	                // if (images.nodeName.toUpperCase() == 'IMG') {
+	                //     if (!images.complete) {
 	                //         return;
 	                //     }
 	                // }
@@ -15606,8 +15606,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // },
 
 	        /**
-	         * Converting a path to image.
-	         * It has much better performance of drawing image rather than drawing a vector path.
+	         * Converting a path to images.
+	         * It has much better performance of drawing images rather than drawing a vector path.
 	         * @param {module:zrender/graphic/Path} e
 	         * @param {number} width
 	         * @param {number} height
@@ -17760,7 +17760,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var el = displayList[i];
 	                if (!el.invisible) {
 	                    el.beforeBrush && el.beforeBrush(ctx);
-	                    // TODO Check image cross origin
+	                    // TODO Check images cross origin
 	                    el.brush(ctx, false);
 	                    el.afterBrush && el.afterBrush(ctx);
 	                }
@@ -21275,7 +21275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            var symbolPath;
 
-	            if (symbolType.indexOf('image://') === 0) {
+	            if (symbolType.indexOf('images://') === 0) {
 	                symbolPath = new graphic.Image({
 	                    style: {
 	                        image: symbolType.slice(8),
@@ -44221,7 +44221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        color && cssText.push('color:' + color);
 
-	        cssText.push('font:' + textStyleModel.getFont());
+	        cssText.push('fonts:' + textStyleModel.getFont());
 
 	        fontSize &&
 	            cssText.push('line-height:' + Math.round(fontSize * 3 / 2) + 'px');
@@ -53476,7 +53476,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        width: itemSize,
 	                        height: itemSize
 	                    };
-	                    var path = icon.indexOf('image://') === 0
+	                    var path = icon.indexOf('images://') === 0
 	                        ? (
 	                            style.image = icon.slice(8),
 	                            new graphic.Image({style: style})
@@ -54250,7 +54250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Use default textarea
 	            viewMain.appendChild(textarea);
 	            textarea.readOnly = model.get('readOnly');
-	            textarea.style.cssText = 'width:100%;height:100%;font-family:monospace;font-size:14px;line-height:1.6rem;';
+	            textarea.style.cssText = 'width:100%;height:100%;fonts-family:monospace;fonts-size:14px;line-height:1.6rem;';
 	            textarea.style.color = model.get('textColor');
 	            textarea.style.borderColor = model.get('textareaBorderColor');
 	            textarea.style.backgroundColor = model.get('textareaColor');
@@ -54263,7 +54263,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        buttonContainer.style.cssText = 'position:absolute;bottom:0;left:0;right:0;';
 
 	        var buttonStyle = 'float:right;margin-right:20px;border:none;'
-	            + 'cursor:pointer;padding:2px 5px;font-size:12px;border-radius:3px';
+	            + 'cursor:pointer;padding:2px 5px;fonts-size:12px;border-radius:3px';
 	        var closeButton = document.createElement('div');
 	        var refreshButton = document.createElement('div');
 
@@ -55534,7 +55534,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                imageRuntimeStyle.width = oldRuntimeWidth;
 	                imageRuntimeStyle.height = oldRuntimeHeight;
 
-	                // Caching image original width, height and src
+	                // Caching images original width, height and src
 	                this._imageSrc = src;
 	                this._imageWidth = ow;
 	                this._imageHeight = oh;
@@ -55637,7 +55637,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var imageELStyle = imageEl.style;
 	        if (hasCrop) {
-	            // Needs know image original width and height
+	            // Needs know images original width and height
 	            if (! (ow && oh)) {
 	                var tmpImage = new Image();
 	                var self = this;
@@ -55645,11 +55645,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    tmpImage.onload = null;
 	                    ow = tmpImage.width;
 	                    oh = tmpImage.height;
-	                    // Adjust image width and height to fit the ratio destinationSize / sourceSize
+	                    // Adjust images width and height to fit the ratio destinationSize / sourceSize
 	                    imageELStyle.width = round(scaleX * ow * dw / sw) + 'px';
 	                    imageELStyle.height = round(scaleY * oh * dh / sh) + 'px';
 
-	                    // Caching image original width, height and src
+	                    // Caching images original width, height and src
 	                    self._imageWidth = ow;
 	                    self._imageHeight = oh;
 	                    self._imageSrc = image;
@@ -55784,7 +55784,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        try {
 	            textMeasureEl.style.font = textFont;
 	        } catch (ex) {
-	            // Ignore failures to set to invalid font.
+	            // Ignore failures to set to invalid fonts.
 	        }
 	        textMeasureEl.innerHTML = '';
 	        // Don't use innerHTML or innerText because they allow markup/whitespace.
@@ -55969,7 +55969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        try {
 	            textPathEl.style.font = font;
 	        }
-	        // Error font format
+	        // Error fonts format
 	        catch (e) {}
 
 	        updateFillAndStroke(textVmlEl, 'fill', {
