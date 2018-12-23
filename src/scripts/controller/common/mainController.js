@@ -8,13 +8,13 @@ angular.module('mainModule')
             $scope.userLogin = function () {
                 RestBase.get(
                     {
-                        url: BaseURL + "/login",
+                        url: BaseURL + "/user/login",
                         params: $scope.person
                     },
                     function successCallback(response) {
                         var data = response.data;
                         if (data.status === "OK") {
-                            $scope.toFirst(data.results[0]);//请求成功执行的代码
+                            $scope.toFirst(data.result);//请求成功执行的代码
                         } else {
                             $scope.person.name = data.message;
                         }
@@ -24,17 +24,17 @@ angular.module('mainModule')
                     });
             };
             $scope.userSignUp = function () {
-                var pwdRepeat = $scope.pwdRepeat;
+                var pwdRepeat = $scope.password_repeat;
                 if (pwdRepeat === $scope.person.password) {
                     RestBase.post(
                         {
-                            url: BaseURL + "/signup",
+                            url: BaseURL + "/user/signup",
                             data: $scope.person
                         },
                         function successCallback(response) {
                             var data = response.data;
                             if (data.status === "OK") {
-                                $scope.toFirst(data.results[0]);//请求成功执行的代码
+                                $scope.toFirst(data.result);//请求成功执行的代码
                             } else {
                                 $scope.person.name = data.message;
                             }
@@ -48,17 +48,17 @@ angular.module('mainModule')
                 $state.go('signup');
             };
             $scope.toFirst = function (user) {
-                $state.go('first', {user: user});
+                $state.go('first', { user: user });
             };
 
-            var mobileMenuOutsideClick = function() {
+            var mobileMenuOutsideClick = function () {
 
                 $(document).click(function (e) {
                     var container = $("#gtco-offcanvas, .js-gtco-nav-toggle");
                     if (!container.is(e.target) && container.has(e.target).length === 0) {
                         $('.js-gtco-nav-toggle').addClass('gtco-nav-white');
 
-                        if ( $('body').hasClass('offcanvas') ) {
+                        if ($('body').hasClass('offcanvas')) {
 
                             $('body').removeClass('offcanvas');
                             $('.js-gtco-nav-toggle').removeClass('active');
@@ -71,9 +71,9 @@ angular.module('mainModule')
 
             };
 
-            var formTab = function() {
+            var formTab = function () {
 
-                $('.tab-menu a').on('click', function(event){
+                $('.tab-menu a').on('click', function (event) {
                     var $this = $(this),
                         data = $this.data('tab');
 
@@ -81,7 +81,7 @@ angular.module('mainModule')
                     $this.closest('li').addClass('active')
 
                     $('.tab .tab-content-inner').removeClass('active');
-                    $this.closest('.tab').find('.tab-content-inner[data-content="'+data+'"]').addClass('active');
+                    $this.closest('.tab').find('.tab-content-inner[data-content="' + data + '"]').addClass('active');
 
                     event.preventDefault();
 
@@ -89,7 +89,7 @@ angular.module('mainModule')
 
             };
 
-            var offcanvasMenu = function() {
+            var offcanvasMenu = function () {
 
                 $('#page').prepend('<div id="gtco-offcanvas" />');
                 $('#page').prepend('<a href="#" class="js-gtco-nav-toggle gtco-nav-toggle gtco-nav-white"><i></i></a>');
@@ -104,14 +104,14 @@ angular.module('mainModule')
                     .removeClass('has-dropdown');
 
                 // Hover dropdown menu on mobile
-                $('.offcanvas-has-dropdown').mouseenter(function(){
+                $('.offcanvas-has-dropdown').mouseenter(function () {
                     var $this = $(this);
 
                     $this
                         .addClass('active')
                         .find('ul')
                         .slideDown(500, 'easeOutExpo');
-                }).mouseleave(function(){
+                }).mouseleave(function () {
 
                     var $this = $(this);
                     $this
@@ -121,9 +121,9 @@ angular.module('mainModule')
                 });
 
 
-                $(window).resize(function(){
+                $(window).resize(function () {
 
-                    if ( $('body').hasClass('offcanvas') ) {
+                    if ($('body').hasClass('offcanvas')) {
 
                         $('body').removeClass('offcanvas');
                         $('.js-gtco-nav-toggle').removeClass('active');
@@ -133,13 +133,13 @@ angular.module('mainModule')
             };
 
 
-            var burgerMenu = function() {
+            var burgerMenu = function () {
 
-                $('body').on('click', '.js-gtco-nav-toggle', function(event){
+                $('body').on('click', '.js-gtco-nav-toggle', function (event) {
                     var $this = $(this);
 
 
-                    if ( $('body').hasClass('overflow offcanvas') ) {
+                    if ($('body').hasClass('overflow offcanvas')) {
                         $('body').removeClass('overflow offcanvas');
                     } else {
                         $('body').addClass('overflow offcanvas');
@@ -152,51 +152,51 @@ angular.module('mainModule')
 
 
 
-            var contentWayPoint = function() {
+            var contentWayPoint = function () {
                 var i = 0;
 
                 // $('.gtco-section').waypoint( function( direction ) {
 
 
-                $('.animate-box').waypoint( function( direction ) {
+                $('.animate-box').waypoint(function (direction) {
 
-                    if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
+                    if (direction === 'down' && !$(this.element).hasClass('animated-fast')) {
 
                         i++;
 
                         $(this.element).addClass('item-animate');
-                        setTimeout(function(){
+                        setTimeout(function () {
 
-                            $('body .animate-box.item-animate').each(function(k){
+                            $('body .animate-box.item-animate').each(function (k) {
                                 var el = $(this);
-                                setTimeout( function () {
+                                setTimeout(function () {
                                     var effect = el.data('animate-effect');
-                                    if ( effect === 'fadeIn') {
+                                    if (effect === 'fadeIn') {
                                         el.addClass('fadeIn animated-fast');
-                                    } else if ( effect === 'fadeInLeft') {
+                                    } else if (effect === 'fadeInLeft') {
                                         el.addClass('fadeInLeft animated-fast');
-                                    } else if ( effect === 'fadeInRight') {
+                                    } else if (effect === 'fadeInRight') {
                                         el.addClass('fadeInRight animated-fast');
                                     } else {
                                         el.addClass('fadeInUp animated-fast');
                                     }
 
                                     el.removeClass('item-animate');
-                                },  k * 200, 'easeInOutExpo' );
+                                }, k * 200, 'easeInOutExpo');
                             });
 
                         }, 100);
 
                     }
 
-                } , { offset: '85%' } );
+                }, { offset: '85%' });
                 // }, { offset: '90%'} );
             };
 
 
-            var dropdown = function() {
+            var dropdown = function () {
 
-                $('.has-dropdown').mouseenter(function(){
+                $('.has-dropdown').mouseenter(function () {
 
                     var $this = $(this);
                     $this
@@ -204,7 +204,7 @@ angular.module('mainModule')
                         .css('display', 'block')
                         .addClass('animated-fast fadeInUpMenu');
 
-                }).mouseleave(function(){
+                }).mouseleave(function () {
                     var $this = $(this);
 
                     $this
@@ -216,7 +216,7 @@ angular.module('mainModule')
             };
 
 
-            var owlCarousel = function(){
+            var owlCarousel = function () {
 
                 var owl = $('.owl-carousel-carousel');
                 owl.owlCarousel({
@@ -231,15 +231,15 @@ angular.module('mainModule')
                         "<i class='ti-arrow-left owl-direction'></i>",
                         "<i class='ti-arrow-right owl-direction'></i>"
                     ],
-                    responsive:{
-                        0:{
-                            items:1
+                    responsive: {
+                        0: {
+                            items: 1
                         },
-                        600:{
-                            items:2
+                        600: {
+                            items: 2
                         },
-                        1000:{
-                            items:3
+                        1000: {
+                            items: 3
                         }
                     }
                 });
@@ -267,9 +267,9 @@ angular.module('mainModule')
 
 
 
-            var goToTop = function() {
+            var goToTop = function () {
 
-                $('.js-gotop').on('click', function(event){
+                $('.js-gotop').on('click', function (event) {
 
                     event.preventDefault();
 
@@ -280,7 +280,7 @@ angular.module('mainModule')
                     return false;
                 });
 
-                $(window).scroll(function(){
+                $(window).scroll(function () {
 
                     var $win = $(window);
                     if ($win.scrollTop() > 200) {
@@ -295,11 +295,11 @@ angular.module('mainModule')
 
 
             // Loading page
-            var loaderPage = function() {
+            var loaderPage = function () {
                 $(".gtco-loader").fadeOut("slow");
             };
 
-            var counter = function() {
+            var counter = function () {
                 $('.js-counter').countTo({
                     formatter: function (value, options) {
                         return value.toFixed(options.decimals);
@@ -307,20 +307,20 @@ angular.module('mainModule')
                 });
             };
 
-            var counterWayPoint = function() {
-                if ($('#gtco-counter').length > 0 ) {
-                    $('#gtco-counter').waypoint( function( direction ) {
+            var counterWayPoint = function () {
+                if ($('#gtco-counter').length > 0) {
+                    $('#gtco-counter').waypoint(function (direction) {
 
-                        if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-                            setTimeout( counter , 400);
+                        if (direction === 'down' && !$(this.element).hasClass('animated')) {
+                            setTimeout(counter, 400);
                             $(this.element).addClass('animated');
                         }
-                    } , { offset: '90%' } );
+                    }, { offset: '90%' });
                 }
             };
 
 
-            $(function(){
+            $(function () {
                 mobileMenuOutsideClick();
                 formTab();
                 offcanvasMenu();
